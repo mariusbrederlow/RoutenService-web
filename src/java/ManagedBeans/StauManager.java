@@ -22,7 +22,7 @@ import javax.naming.NamingException;
 @SessionScoped
 public class StauManager implements Serializable{
 
-    public void test() throws NamingException, IOException{
+    public void generiereStau() throws NamingException, IOException{
          IStauService dienst = (IStauService) new LookUp().doLookUp("java:global/Staugenerator-ejb/StauService"); 
          dienst.generiereStau();
     }

@@ -31,31 +31,19 @@ private Knoten quelle;
 private Knoten ziel;
 
     
-    
-    public RoutenManager() throws NamingException, IOException {
-       
+    /*
+     * Ueberschreiben des Default Konstruktors, so das im Backend der Graph initialisiert wird und man im FrontEnd
+     * alle zum Graphen gehoerenden Knoten waehlen kann.
+     */
+    public RoutenManager() throws NamingException {       
         IRoutenService dienst = (IRoutenService) new LookUp().doLookUp("java:global/RoutenService-ejb/RoutenService"); 
-      knotenliste=dienst.getKnotenListe();
-        System.out.println(knotenliste);
+        knotenliste=dienst.getKnotenListe();        
     }
 
- public void test() throws NamingException, IOException{
-      System.out.println(standort);
-      System.out.println(zielort);
- }
     
-    public void setzeOrte() throws NamingException, IOException{
-        IRoutenService dienst = (IRoutenService) new LookUp().doLookUp("java:global/RoutenService-ejb/RoutenService"); 
-        if(!"0".equals(standort) && !"0".equals(zielort)){
-            dienst.setStandort(standort);
-            dienst.setZielort(zielort);
-        }
-        
-    }
     
-    public void berechneWeg() throws NamingException, IOException{
-         IRoutenService dienst = (IRoutenService) new LookUp().doLookUp("java:global/RoutenService-ejb/RoutenService"); 
-        
+    public void berechneWeg() throws NamingException {
+         IRoutenService dienst = (IRoutenService) new LookUp().doLookUp("java:global/RoutenService-ejb/RoutenService");      
          pfad=dienst.getSchnellsterWeg(standort,zielort);
     }
 

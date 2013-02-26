@@ -13,11 +13,15 @@ import javax.naming.NamingException;
 /**
  *
  * @author mariusbrederlow
+ * Die LookUp Klasse stellt als einzige Methode doLookUp zur Verfügung. Sie repräsentier die zentrale
+ * Rolle der Kommunikation zwischen der Web-App und den BackEnd EJBs. 
  */
-
 public class LookUp {        
-    
-    public Object doLookUp(String jndi) throws NamingException, IOException{
+    /*
+     * doLookUp bekommt als Parameter einen JNDI-Namen als String übergeben und liefert eine Remote-Refferenz
+     * auf das entfernte Objekt zurück.
+     */
+    public Object doLookUp(String jndi) throws NamingException {
         
      
         
@@ -31,8 +35,6 @@ props.put("java.naming.factory.initial", "com.sun.enterprise.naming.SerialInitCo
 props.put("java.naming.factory.url.pkgs", "com.sun.enterprise.naming");  
 props.put("java.naming.factory.state", "com.sun.corba.ee.impl.presentation.rmi.JNDIStateFactoryImpl");
 
-//        InputStream stream = this.getClass().getClassLoader().getResourceAsStream("jndi.properties");
-//        props.load(stream);
         
         
 InitialContext ctx = new InitialContext(props); 

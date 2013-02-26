@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>RoutenService</title>
+    </h:head>
+    <h:body>
+        <h1>RoutenService</h1>
+        <br />
+        <h2>Bitte wählen Sie Ihre Position und das gewünschte Ziel aus</h2>
+        <h:form id="Form">
+            
+            <h:outputText value="Wählen Sie Ihren Standort"/><br/>
+            <p:selectOneMenu id="Standort" value="#{RoutenManager.standort}">
+                <f:selectItem itemLabel="Standort" itemValue="0"/>
+                <f:selectItems value="#{RoutenManager.knotenliste}"/>
+           </p:selectOneMenu>
+            
+           
+            <br /><br />
+            
+            <h:outputText value="Wählen Sie ein Ziel"/><br/>
+            <p:selectOneMenu id="Ziel" value="#{RoutenManager.zielort}">
+                <f:selectItem itemLabel="Standort" itemValue="0"/>
+                <f:selectItems value="#{RoutenManager.knotenliste}"/>
+           </p:selectOneMenu>
+            <br />
+            
+           
+            <br /><br />
+            
+            <p:commandButton value="Berechne Weg" actionListener="#{RoutenManager.berechneWeg()}" update=":Form:PfadTabelle"/>
+             <br /><br />
+             <p:commandButton value="Generiere Stau" actionListener="#{StauManager.generiereStau()}"/>
+             
+             <p:dataTable id="PfadTabelle" var="data" value="#{RoutenManager.pfad}">  
+                     
+                     <p:column headerText="Ort / Knoten Name">
+                         <h:outputText value="#{data.name}"/>
+                     </p:column>
+                     
+                 <p:column headerText="Minuten ausgehend von #{RoutenManager.standort}">
+                         <h:outputText value="#{data.minDistanz}"/>
+                     </p:column>
+                     
+                    </p:dataTable>  
+            
+        </h:form>
+        
+    </h:body>
+</html>
+

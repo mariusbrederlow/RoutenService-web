@@ -1,55 +1,46 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>RoutenService</title>
-    </h:head>
-    <h:body>
-        <h1>RoutenService</h1>
-        <br />
-        <h2>Bitte wählen Sie Ihre Position und das gewünschte Ziel aus</h2>
-        <h:form id="Form">
-            
-            <h:outputText value="Wählen Sie Ihren Standort"/><br/>
-            <p:selectOneMenu id="Standort" value="#{RoutenManager.standort}">
-                <f:selectItem itemLabel="Standort" itemValue="0"/>
-                <f:selectItems value="#{RoutenManager.knotenliste}"/>
-           </p:selectOneMenu>
-            
+
+    <f:view contentType="text/html">
+        <h:head>        
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>RoutenService</title>
+        </h:head>
            
-            <br /><br />
-            
-            <h:outputText value="Wählen Sie ein Ziel"/><br/>
-            <p:selectOneMenu id="Ziel" value="#{RoutenManager.zielort}">
-                <f:selectItem itemLabel="Standort" itemValue="0"/>
-                <f:selectItems value="#{RoutenManager.knotenliste}"/>
-           </p:selectOneMenu>
-            <br />
-            <p:commandButton value="Setze Orte" actionListener="#{RoutenManager.setzeOrte()}"/>
+            <h:body>
+               <p:layout fullPage="true">
+            <p:layoutUnit position="west" size="175" id="navigation">
+                <h:form>
+                <p:menu>
+                       
+                        <p:submenu label="Navigation">
+                            <p:menuitem value="Route Berechnen" action="#{NavigationBean.setPageToDisplay('RoutenService.xhtml')}" update=":centerpanel"/>                            
+                            <p:menuitem value="Logout" action="#{SessionManager.doLogout()}" update=":centerpanel"/>
+                        </p:submenu>
+
+                    </p:menu>
+                    </h:form>    
+                </p:layoutUnit>    
            
-            <br /><br />
-            
-            <p:commandButton value="Berechne Weg" actionListener="#{RoutenManager.berechneWeg()}" update=":Form:PfadTabelle"/>
-             <br /><br />
-             <p:commandButton value="TestStau" actionListener="#{StauManager.test()}"/>
-             
-             <p:dataTable id="PfadTabelle" var="data" value="#{RoutenManager.pfad}">  
-                     
-                     <p:column headerText="Ort / Knoten Name">
-                         <h:outputText value="#{data.name}"/>
-                     </p:column>
-                     
-                 <p:column headerText="Distanz ausgehend von #{RoutenManager.standort}">
-                         <h:outputText value="#{data.minDistanz}"/>
-                     </p:column>
-                     
-                    </p:dataTable>  
-            
-        </h:form>
+                
+                
+                <p:layoutUnit position="center" id="center">
+                    <p:panel id="centerpanel">
+                      <ui:include src="#{NavigationBean.pageToDisplay}"/>   
+                       
+                    </p:panel>
+                </p:layoutUnit>
+                
+                </p:layout>
+                
+                
+            </h:body>
         
-    </h:body>
+
+    </f:view>
 </html>
 
