@@ -7,7 +7,6 @@ package ManagedBeans;
 import Kommunikation.LookUp;
 import entities.Knoten;
 import interfaces.IRoutenService;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -17,7 +16,7 @@ import javax.naming.NamingException;
 
 /**
  *
- * @author mariusbrederlow
+ * @author peters
  */
 @ManagedBean(name="RoutenManager")
 @SessionScoped

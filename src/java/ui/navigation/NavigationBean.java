@@ -11,7 +11,7 @@ import javax.inject.Named;
 
 /**
  *
- * @author mariusbrederlow
+ * @author peters
  */
 @ManagedBean(name = "NavigationBean")
 @SessionScoped

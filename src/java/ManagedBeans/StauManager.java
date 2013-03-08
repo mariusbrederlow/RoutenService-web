@@ -16,7 +16,7 @@ import javax.naming.NamingException;
 
 /**
  *
- * @author mariusbrederlow
+ * @author peters
  */
 @ManagedBean(name="StauManager")
 @SessionScoped

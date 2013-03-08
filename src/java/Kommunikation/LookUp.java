@@ -12,7 +12,7 @@ import javax.naming.NamingException;
 
 /**
  *
- * @author mariusbrederlow
+ * @author peters
  * Die LookUp Klasse stellt als einzige Methode doLookUp zur Verfügung. Sie repräsentier die zentrale
  * Rolle der Kommunikation zwischen der Web-App und den BackEnd EJBs. 
  */

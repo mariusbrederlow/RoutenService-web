@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  *
- * @author mariusbrederlow
+ * @author peters
  */
 @ManagedBean(name="SessionManager")
 @NoneScoped
